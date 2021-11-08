@@ -12,9 +12,13 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.nav-link {
+  margin: "1rem";
+  font-size: large;
+  color: rgb(219, 212, 230);
+}
 .App-header {
-  background-color: #282c34;
+  background-color: #0c0303;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +30,15 @@
 
 .App-link {
   color: #61dafb;
+}
+.button1 {
+  border: none;
+  padding: 15px 32px;
+  color: white;
+  background-color: #070647;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 @keyframes App-logo-spin {

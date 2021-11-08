@@ -15,21 +15,24 @@ export default function Search() {
 
   const change = () => {
     setUrl(`http://www.omdbapi.com/?t=${film}&apikey=${key}`);
-
   };
 
   return (
-    <><p>
-          <button onClick={change}>search</button>
-          <input
-              type="text"
-              placeholder="film"
-              onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                      setFilm(e.target.value);
-                      change();
-                  }
-              } } />
-      </p><GetFilm /></>
+    <>
+      <p>
+        <button onClick={change}>search</button>
+        <input
+          type="text"
+          placeholder="film"
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              setFilm(e.target.value);
+              change();
+            }
+          }}
+        />
+      </p>
+      <GetFilm />
+    </>
   );
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
 import GetFilmInfo from "./GetFilmInfo";
+import "./components.css";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   Link,
   Redirect,
@@ -15,25 +15,22 @@ export default class GetHomePage extends React.Component {
   };
 
   componentDidMount(props) {
-    try {
-      this.search(props);
-    } catch (error) {
-      this.setState({ info: <p> </p> });
-      console.log(error);
-    }
+    this.search(props);
   }
 
   async search(props) {
     let key = "k_nb1tky3v";
-    let url = `https://imdb-api.com/en/API/MostPopularMovies/${key}`;
+    let url = `https://imdb-api.com/en/API/ComingSoon/${key}`;
     var key2 = "3e5977f9";
-
     const GetFilm = (name) => {
-      url = `https://www.omdbapi.com/?t=${name}&apikey=${key2}`;
-      this.props.set(url);
+      change(name);
       console.log(name);
     };
-
+    const change = (name) => {
+      url = `https://www.omdbapi.com/?t=${name}&apikey=${key2}`;
+      this.props.set(url);
+      // return <GetFilmInfo URL={url} />;
+    };
     axios.get(url).then((res) => {
       const data = res.data;
       const imgUrls = [];
@@ -45,25 +42,25 @@ export default class GetHomePage extends React.Component {
         titles[i] = data.items[i].title;
         images[i] = (
           <td>
-            <>
-              <Link to={"/GetFilmInfo"} onClick={() => GetFilm(titles[i])}>
-                <img
-                  key={data.items[i].id}
-                  src={imgUrls[i]}
-                  alt="poster"
-                  width="150"
-                  height="200"
+            <Link to={"/GetFilmInfo"}>
+              <img
+                key={data.items[i].id}
+                onClick={() => GetFilm(titles[i])}
+                src={imgUrls[i]}
+                alt="poster"
+                width="150"
+                height="200"
+              />
+              <Route path="/GetFilmInfo">
+                <GetFilmInfo
+                  URL={`https://www.omdbapi.com/?t=${titles[i]}&apikey=${key2}`}
                 />
-                <Route path="/GetFilmInfo">
-                  <GetFilmInfo
-                    URL={`https://www.omdbapi.com/?t=${titles[i]}&apikey=${key2}`}
-                  />
-                </Route>
-              </Link>
-              <p className="list">
-                <small> {titles[i]}</small>{" "}
-              </p>
-            </>
+              </Route>
+            </Link>
+
+            <p className="list">
+              <small> {titles[i]}</small>{" "}
+            </p>
           </td>
         );
       }
@@ -94,7 +91,7 @@ export default class GetHomePage extends React.Component {
   render() {
     return (
       <>
-        <header>Most popular films </header>
+        <header>Coming Soon </header>
         <p> {this.state.info}</p>
       </>
     );
