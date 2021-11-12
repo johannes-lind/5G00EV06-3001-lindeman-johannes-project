@@ -22,14 +22,20 @@ export default class GetTop25 extends React.Component {
       for (let i = 0; i < 25; i++) {
         imgUrls[i] = data.items[i].image;
         images[i] = (
-          <img
-            key={i}
-            src={imgUrls[i]}
-            alt="poster"
-            width="100"
-            height="150"
-            //  onClick={<ShowInfo film={data.items[0]} />}
-          />
+          <td>
+            <>
+              <img
+                key={i}
+                src={imgUrls[i]}
+                alt="poster"
+                width="150"
+                height="200"
+              />
+              <p className="list">
+                <small> {data.items[i].title}</small>{" "}
+              </p>
+            </>
+          </td>
         );
       }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import GetFilmInfo from "./GetFilmInfo";
+import Search from "./Search";
 import "./components.css";
+import AddToList from "./AddToList";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +10,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { render } from "@testing-library/react";
-export default class GetHomePage extends React.Component {
+export default class ComingSoon extends React.Component {
   state = {
     info: [],
   };
@@ -22,45 +23,53 @@ export default class GetHomePage extends React.Component {
     let key = "k_nb1tky3v";
     let url = `https://imdb-api.com/en/API/ComingSoon/${key}`;
     var key2 = "3e5977f9";
-    const GetFilm = (name) => {
-      change(name);
-      console.log(name);
+    const GetFilm = (id) => {
+      change(id);
+      console.log(id);
     };
-    const change = (name) => {
-      url = `https://www.omdbapi.com/?t=${name}&apikey=${key2}`;
+    const change = (id) => {
+      url = `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
-      // return <GetFilmInfo URL={url} />;
+      // return <Search URL={url} />;
     };
     axios.get(url).then((res) => {
       const data = res.data;
       const imgUrls = [];
       const images = [];
       const titles = [];
+      const ids = [];
       console.log(data);
       for (let i = 0; i < 15; i++) {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
+        ids[i] = data.items[i].id;
         images[i] = (
           <td>
-            <Link to={"/GetFilmInfo"}>
+            <Link to={"/Search"}>
               <img
                 key={data.items[i].id}
-                onClick={() => GetFilm(titles[i])}
+                onClick={() => GetFilm(ids[i])}
                 src={imgUrls[i]}
                 alt="poster"
                 width="150"
                 height="200"
               />
-              <Route path="/GetFilmInfo">
-                <GetFilmInfo
-                  URL={`https://www.omdbapi.com/?t=${titles[i]}&apikey=${key2}`}
+              <Route path="/Search">
+                <Search
+                  URL={`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                 />
               </Route>
             </Link>
-
             <p className="list">
               <small> {titles[i]}</small>{" "}
-            </p>
+            </p>{" "}
+            <p></p>
+            <button
+              className="b"
+              onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
+            >
+              Add to Watchlist
+            </button>
           </td>
         );
       }
