@@ -19,11 +19,18 @@ The app will be published in Heroku https://cinetic.herokuapp.com/
 
 Release 1: 2021-11-15 features:
 
--User is able to see homepage which shows 15 most popular film right now
--User can search films by title
--User can see information for searched films
--User can add films to watchlist
--User can remove films from watchlist
--User can clear watchlist
--User can click the poster of films listed in any view to see the film's information
--User can exit and open the app and watchlist is saved to persistant storage
+-User is able to see homepage which shows 15 most popular film right now.
+
+-User can search films by title.
+
+-User can see information for searched films.
+
+-User can add films to watchlist.
+
+-User can remove films from watchlist.
+
+-User can clear watchlist.
+
+-User can click the poster of films listed in any view to see the film's information.
+
+-User can exit and open the app and watchlist is saved to persistant storage.
