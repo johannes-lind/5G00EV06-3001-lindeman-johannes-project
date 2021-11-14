@@ -6,6 +6,13 @@ app.use(express.static("public"));
 //app.get("/", (req, res) => {
 //  res.send("Hello world");
 //});
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.listen(port, () => {
   console.log("Example app listening at http://localhost:" + port);
