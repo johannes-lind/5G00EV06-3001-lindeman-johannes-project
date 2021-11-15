@@ -17,6 +17,7 @@ app.get("/HomePage", (req, res) => {
   res.sendFile(path.join("public/index.html"));
 });*/
 
+// fix for routing problem
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"), function (err) {
     if (err) {
