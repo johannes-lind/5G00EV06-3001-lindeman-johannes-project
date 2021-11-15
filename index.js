@@ -7,6 +7,7 @@ require("dotenv").config();
 
 app.use(express.static("public"));
 app.use("/api1", require("./routes/index1"));
+app.use("/Search", require("./routes/index1"));
 app.use("/api2", require("./routes/index2"));
 app.use(cors());
 
