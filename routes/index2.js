@@ -8,6 +8,7 @@ const API_KEY_VALUE2 = process.env.API_KEY_VALUE2;
 
 router.get("/", async (req, res) => {
   try {
+    console.log(API_KEY_VALUE2);
     const params = new URLSearchParams({
       API_KEY_VALUE2,
       ...url.parse(req.url, true).query,
