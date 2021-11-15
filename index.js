@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require("path");
+const cors = require("cors");
+require("dotenv").config();
 
 app.use(express.static("public"));
+app.use("/api", require("./routes/index1.js"));
+app.use("/api2", require("./routes/index2.js"));
+app.use(cors());
+
 //app.use(express.static("public"));
 
 //app.get("/", (req, res) => {
@@ -18,6 +24,7 @@ app.get("/HomePage", (req, res) => {
 });*/
 
 // fix for routing problem
+
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"), function (err) {
     if (err) {
