@@ -32,7 +32,7 @@
   font-family: "Times New Roman", Times, serif;
   font-size: 22px;
   max-width: 1200px;
-  min-width: 1000px;
+  width: fit-content;
 }
 .b {
   border: none;

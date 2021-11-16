@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Search from "./Search";
+import "./components.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default class HomePage extends React.Component {
   state = {
@@ -18,13 +19,11 @@ export default class HomePage extends React.Component {
 
   // function to search film from API
   async search(props) {
-    let key = "k_nb1tky3v";
-    let url = `https://imdb-api.com/en/API/MostPopularMovies/${key}`;
-    var key2 = "3e5977f9";
+    let url = `/api3`; //`https://imdb-api.com/en/API/MostPopularMovies/${key}`;
 
     // function to change the url and send it to App-components
     const GetFilm = (id) => {
-      url = `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/api1?i=${id}`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
 
@@ -41,6 +40,12 @@ export default class HomePage extends React.Component {
         for (let i = 0; i < 15; i++) {
           imgUrls[i] = data.items[i].image;
           titles[i] = data.items[i].title;
+
+          // Handling for titles that are so long that they mess up the view
+          if (titles[i].length > 17) {
+            titles[i] = titles[i].slice(0, 14);
+            titles[i] = `${titles[i]}...`;
+          }
           console.log(data);
           ids[i] = data.items[i].id;
           images[i] = (
@@ -50,16 +55,16 @@ export default class HomePage extends React.Component {
                   key={data.items[i].id}
                   src={imgUrls[i]}
                   alt="poster"
-                  width="150"
-                  height="210"
+                  width="160"
+                  height="225"
                 />
                 <Route path="/Search">
                   <Search
-                    URL={`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                    URL={`/api1?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                   />
                 </Route>
               </Link>
-              <p className="list">{titles[i]}</p>
+              <p text-align="center">{titles[i]}</p>
             </td>
           );
         }

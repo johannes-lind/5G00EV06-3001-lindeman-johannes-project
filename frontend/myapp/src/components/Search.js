@@ -19,11 +19,12 @@ export default class Search extends React.Component {
     this._isMounted = true;
     try {
       this.search();
+      // setting the film in app.js so that in refresh it doesnt change to default
+      this.props.set(this.state.name);
     } catch (error) {
       this.setState({
         info: (
           <p>
-            {" "}
             <em>No results found </em>
           </p>
         ),
@@ -51,14 +52,12 @@ export default class Search extends React.Component {
   };
   // search function including data parsing and setting up component for render
   // error handinlg included if no ratings for the film are available (which is very frequent)
-  async search() {
-    axios.get(this.props.URL).then((res) => {
+  search = async () => {
+    await axios.get(this.props.URL).then((res) => {
       const data = res.data;
       const image = data.Poster;
-
       if (this._isMounted) {
         this.setState({
-        
           info: [
             <div>
               <h2>
@@ -103,6 +102,7 @@ export default class Search extends React.Component {
           name: data.Title,
           id: data.imdbID,
         });
+
         try {
           const rating1 = [data.Ratings[0].Source, data.Ratings[0].Value];
           const rating2 = [data.Ratings[1].Source, data.Ratings[1].Value];
@@ -128,20 +128,22 @@ export default class Search extends React.Component {
           this.setState({
             ratings: [
               <p>
-                <em>Ratings not available</em>{" "}
+                <em>Ratings not available</em>
               </p>,
             ],
           });
         }
       }
     });
-  }
+  };
   componentWillUnmount() {
     this._isMounted = false;
   }
   render() {
     return (
       <>
+        {" "}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <table>{this.state.info} </table>
         <p className="ratings"> RATINGS {this.state.ratings}</p>
       </>

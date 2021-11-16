@@ -20,15 +20,15 @@ export default class ComingSoon extends React.Component {
   }
 
   async search(props) {
-    let key = "k_nb1tky3v";
-    let url = `https://imdb-api.com/en/API/ComingSoon/${key}`;
-    var key2 = "3e5977f9";
+    let url = `/api2`; //`https://imdb-api.com/en/API/ComingSoon/${key}`;
+
     const GetFilm = (id) => {
       change(id);
       console.log(id);
     };
+
     const change = (id) => {
-      url = `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/api1?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
       // return <Search URL={url} />;
     };
@@ -38,10 +38,16 @@ export default class ComingSoon extends React.Component {
       const images = [];
       const titles = [];
       const ids = [];
+      console.log(data.items.length);
       console.log(data);
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < data.items.length; i++) {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
+        // Handling for titles that are so long that they mess up the view
+        if (titles[i].length > 17) {
+          titles[i] = titles[i].slice(0, 14);
+          titles[i] = `${titles[i]}...`;
+        }
         ids[i] = data.items[i].id;
         images[i] = (
           <td>
@@ -51,48 +57,36 @@ export default class ComingSoon extends React.Component {
                 onClick={() => GetFilm(ids[i])}
                 src={imgUrls[i]}
                 alt="poster"
-                width="150"
-                height="200"
+                width="170"
+                height="230"
               />
               <Route path="/Search">
                 <Search
-                  URL={`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                  URL={`/api1?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                 />
               </Route>
             </Link>
-            <p className="list">
-              <small> {titles[i]}</small>{" "}
-            </p>{" "}
-            <p></p>
-            <button
-              className="b"
-              onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
-            >
-              Add to Watchlist
-            </button>
+            <p text-align="center">{titles[i]}</p>
+            <p>
+              <button
+                className="b"
+                onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
+              >
+                Add to Watchlist
+              </button>
+            </p>
           </td>
         );
       }
+      let rows = [];
+      for (let i = 0; i < images.length; i++) {
+        if (i % 4 === 0) {
+          rows.push(<tr>{}</tr>);
+        }
+        rows.push(images[i]);
+      }
       this.setState({
-        info: [
-          images[0],
-          images[1],
-          images[2],
-          images[3],
-          images[4],
-          <p> </p>,
-          images[5],
-          images[6],
-          images[7],
-          images[8],
-          images[9],
-          <p> </p>,
-          images[10],
-          images[11],
-          images[12],
-          images[13],
-          images[14],
-        ],
+        info: [<table className="list">{rows}</table>],
       });
     });
   }
@@ -100,8 +94,12 @@ export default class ComingSoon extends React.Component {
   render() {
     return (
       <>
-        <header>Coming Soon </header>
-        <p> {this.state.info}</p>
+        {" "}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <header className="header" text-align="center">
+          Coming Soon
+        </header>
+        <div className="posters">{this.state.info}</div>
       </>
     );
   }

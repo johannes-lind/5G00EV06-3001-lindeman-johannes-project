@@ -18,10 +18,9 @@ import GetTop25 from "./components/GetTop25";
 const axios = require("axios");
 
 function App() {
-  let [film, setFilm] = React.useState("Pulp Fiction");
-  var key = "3e5977f9";
+  let [film, setFilm] = React.useState("Twin Peaks");
   let [url, setUrl] = React.useState(
-    `https://www.omdbapi.com/?t=${film}&apikey=${key}`
+    `/api1?t=${film}` //`https://www.omdbapi.com/?t=${film}&apikey=${key}`
   );
 
   // sending the url to Search -component
@@ -30,13 +29,14 @@ function App() {
   };
   //changing the url based on input
   const change = () => {
-    setUrl(`https://www.omdbapi.com/?t=${film}&apikey=${key}`);
+    setUrl(`/api1?t=${film}`); //`https://www.omdbapi.com/?t=${film}&apikey=${key}`);
     GetFilm();
   };
 
   return (
     <Router>
       <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <div className="App">
           <header className="App-header">
             {/*  <Login /> */}
@@ -88,7 +88,7 @@ function App() {
                 <HomePage set={setUrl} />
               </Route>
               <Route path="/Search">
-                <Search URL={url} />
+                <Search URL={url} set={setFilm} />
               </Route>
               <Route path="/ComingSoon">
                 <ComingSoon set={setUrl} />{" "}

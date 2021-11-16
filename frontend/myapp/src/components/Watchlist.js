@@ -32,8 +32,7 @@ export default class Watchlist extends React.Component {
 
   // function to change the url in the App-component
   change = (id) => {
-    let key2 = "3e5977f9";
-    let url = `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+    let url = `/api1?i=${id}`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
     this.props.set(url);
   };
 
@@ -62,7 +61,6 @@ export default class Watchlist extends React.Component {
   // setting up the component according to the title and image it receives as parameter
   // images will once again serve as links to film's page
   setter = (id, title, img) => {
-    let key2 = "3e5977f9";
     const images = [];
 
     for (let i = 0; i < img.length; i++) {
@@ -81,17 +79,17 @@ export default class Watchlist extends React.Component {
               height="280"
               onClick={() => {
                 <Search
-                  URL={`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                  URL={`/api1?i=${id[i]}`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
                 />;
               }}
             />
             <Route path="/Search">
               <Search
-                URL={`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                URL={`/api1?i=${id[i]}`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
               />
             </Route>
           </Link>
-          <p className="list">
+          <p text-align="center">
             {title[i]}
             <p>
               <button className="b" onClick={() => this.remove(id[i], img[i])}>
@@ -104,7 +102,7 @@ export default class Watchlist extends React.Component {
     }
     // creating a table if the watchlist is longer than 5
     if (img.length < 6) {
-      this.setState({ posters: [<table>{images}</table>] });
+      this.setState({ posters: [<table className="list">{images}</table>] });
     } else {
       let rows = [];
       for (let i = 0; i < img.length; i++) {
@@ -113,16 +111,20 @@ export default class Watchlist extends React.Component {
         }
         rows.push(images[i]);
       }
-      this.setState({ posters: [<table>{rows}</table>] });
+      this.setState({ posters: [<table className="list">{rows}</table>] });
     }
   };
 
   render() {
     return (
       <div className="posters">
-        <button className="b" onClick={() => this.ClearList()}>
-          Clear List
-        </button>
+        {" "}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <p align="center">
+          <button align="center" className="b" onClick={() => this.ClearList()}>
+            Clear List
+          </button>
+        </p>
         {this.state.posters}
       </div>
     );

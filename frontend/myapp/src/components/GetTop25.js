@@ -10,8 +10,7 @@ export default class GetTop25 extends React.Component {
   }
 
   async search() {
-    let key = "k_nb1tky3v";
-    let url = `https://imdb-api.com/en/API/MostPopularMovies/${key}`;
+    let url = `/api3`;
     axios.get(url).then((res) => {
       const data = res.data;
       const imgUrls = [];
