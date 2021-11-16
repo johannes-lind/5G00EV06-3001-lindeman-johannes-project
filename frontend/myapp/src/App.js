@@ -14,7 +14,7 @@ import {
 import { render } from "@testing-library/react";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
-import GetTop25 from "./components/GetTop25";
+import Hot100 from "./components/Hot100";
 const axios = require("axios");
 
 function App() {
@@ -36,7 +36,6 @@ function App() {
   return (
     <Router>
       <body>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <div className="App">
           <header className="App-header">
             {/*  <Login /> */}
@@ -54,8 +53,8 @@ function App() {
                 {"    "} Coming Soon
               </Link>
               <> </>
-              <Link to={"/GetTop25"} className="nav-link">
-                {"    "}TOP25
+              <Link to={"/Hot100"} className="nav-link">
+                {"    "}HOT100
               </Link>
               <Link to={"/Watchlist"} className="nav-link">
                 {"    "} Watchlist
@@ -91,9 +90,11 @@ function App() {
                 <Search URL={url} set={setFilm} />
               </Route>
               <Route path="/ComingSoon">
-                <ComingSoon set={setUrl} />{" "}
+                <ComingSoon set={setUrl} />
               </Route>
-              <Route path="/GetTop25" component={GetTop25} />
+              <Route path="/Hot100">
+                <Hot100 set={setUrl} />
+              </Route>
               <Route path="/Watchlist">
                 <Watchlist set={setUrl} />
               </Route>

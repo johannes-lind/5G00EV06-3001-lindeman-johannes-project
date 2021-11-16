@@ -1,17 +1,6 @@
 .App {
   text-align: start;
-  width: 100%;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  width: auto;
 }
 
 .b {
@@ -24,7 +13,7 @@
 }
 
 .nav-link {
-  margin: "1rem";
+  margin: auto;
   font-size: x-large;
   color: rgb(233, 241, 113);
 
@@ -34,7 +23,7 @@
   text-align: center;
   font-family: "Times New Roman", Times, serif;
   font-size: 22px;
-  width: fit-content;
+  width: auto;
 }
 .App-header {
   background-color: #0c0303;

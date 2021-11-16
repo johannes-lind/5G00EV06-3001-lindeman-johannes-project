@@ -141,12 +141,10 @@ export default class Search extends React.Component {
   }
   render() {
     return (
-      <>
-        {" "}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <div>
         <table>{this.state.info} </table>
         <p className="ratings"> RATINGS {this.state.ratings}</p>
-      </>
+      </div>
     );
   }
 }

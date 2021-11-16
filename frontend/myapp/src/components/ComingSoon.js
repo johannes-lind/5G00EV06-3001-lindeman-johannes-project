@@ -38,8 +38,7 @@ export default class ComingSoon extends React.Component {
       const images = [];
       const titles = [];
       const ids = [];
-      console.log(data.items.length);
-      console.log(data);
+   
       for (let i = 0; i < data.items.length; i++) {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;

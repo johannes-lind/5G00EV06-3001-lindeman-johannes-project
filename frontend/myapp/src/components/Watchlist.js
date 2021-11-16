@@ -68,7 +68,7 @@ export default class Watchlist extends React.Component {
         <td>
           <Link
             to={"/Search"}
-            className="nav-link"
+            // className="nav-link"
             onClick={() => this.change(id[i])}
           >
             <img
@@ -118,8 +118,6 @@ export default class Watchlist extends React.Component {
   render() {
     return (
       <div className="posters">
-        {" "}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <p align="center">
           <button align="center" className="b" onClick={() => this.ClearList()}>
             Clear List

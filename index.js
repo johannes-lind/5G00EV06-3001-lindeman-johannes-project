@@ -5,7 +5,7 @@ const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 
-app.use(express.static("public"));
+app.use(express.static("frontend/myapp/build"));
 
 // hiding api keys
 app.use("/api1", require("./routes/index1"));
@@ -16,11 +16,14 @@ app.use(cors());
 // fix for routing problem
 
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
+  res.sendFile(
+    path.join(__dirname, "/frontend/myapp/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
     }
-  });
+  );
 });
 
 app.listen(port, () => {
