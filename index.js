@@ -26,7 +26,7 @@ app.get("/*", function (req, res) {
 
 // for publishing
 
-//app.use(express.static("public"));
+app.use(express.static("public"));
 
 // hiding api keys
 app.use("/find", require("./routes/index1"));
