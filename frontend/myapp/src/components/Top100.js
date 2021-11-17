@@ -7,7 +7,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-export default class Hot100 extends React.Component {
+export default class Top100 extends React.Component {
   state = {
     info: [],
   };
@@ -17,7 +17,7 @@ export default class Hot100 extends React.Component {
   }
 
   async search() {
-    let url = `/popular`;
+    let url = `/top`;
     const GetFilm = (id) => {
       change(id);
       console.log(id);
@@ -84,7 +84,7 @@ export default class Hot100 extends React.Component {
     return (
       <>
         <header className="header" text-align="center">
-          TODAY'S 100 MOST POPULAR FILMS
+          IMDB'S 100 TOP RATED FILMS
         </header>
         <div className="posters"> {this.state.info}</div>
       </>

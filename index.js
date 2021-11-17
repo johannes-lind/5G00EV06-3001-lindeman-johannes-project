@@ -5,8 +5,14 @@ const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 
-/* for developing:
-app.use(express.static("frontend/myapp/build"));
+// for developing:
+/*app.use(express.static("frontend/myapp/build"));
+
+app.use("/find", require("./routes/index1"));
+app.use("/upcoming", require("./routes/index2"));
+app.use("/popular", require("./routes/index3"));
+app.use("/top", require("./routes/index4"));
+app.use(cors());
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "/frontend/myapp/build/index.html"), function (err) {
@@ -15,16 +21,18 @@ app.get("/*", function (req, res) {
     }
   });
 });
-
-
 */
 
-app.use(express.static("public"));
+
+// for publishing
+
+//app.use(express.static("public"));
 
 // hiding api keys
-app.use("/api1", require("./routes/index1"));
-app.use("/api2", require("./routes/index2"));
-app.use("/api3", require("./routes/index3"));
+app.use("/find", require("./routes/index1"));
+app.use("/upcoming", require("./routes/index2"));
+app.use("/popular", require("./routes/index3"));
+app.use("/top", require("./routes/index4"));
 app.use(cors());
 
 // fix for routing problem

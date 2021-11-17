@@ -14,13 +14,12 @@ export default class Search extends React.Component {
   };
   // when component is mounted, it will run a search
   // error handling for no results included
-  componentDidMount() {
+  componentDidMount(props) {
+    // clearing the checkmark with new searches
     this.setState({ onList: [] });
     this._isMounted = true;
     try {
       this.search();
-      // setting the film in app.js so that in refresh it doesnt change to default
-      this.props.set(this.state.name);
     } catch (error) {
       this.setState({
         info: (
@@ -37,28 +36,34 @@ export default class Search extends React.Component {
   // error handling for no results included
   componentDidUpdate(nextProps, nextState) {
     try {
-      if (nextState.info !== this.state.info) {
+      // checking if the search url is changed to prevent infinite loop
+      if (nextProps.URL !== this.props.URL) {
         this.search();
+      
       }
     } catch (error) {
       this.setState({ info: <p> No results found </p> });
       console.log(error);
     }
   }
+  // letting it show when "add to watchlist" is clicked and the film is added to list
   added = () => {
+   // alert("Added to watchlist");
     this.setState({
       onList: [<>✅</>],
     });
+    this.search();
   };
   // search function including data parsing and setting up component for render
-  // error handinlg included if no ratings for the film are available (which is very frequent)
+  // error handling included if no ratings for the film are available (which is very frequent)
   search = async () => {
     await axios.get(this.props.URL).then((res) => {
       const data = res.data;
       const image = data.Poster;
+      console.log("Search called")
       if (data.Response === "False") {
         this.setState({ info: [<p> Not found </p>] });
-        alert("No results, search a different title");
+       // alert("No results, search a different title");
       } else {
         if (this._isMounted) {
           this.setState({
@@ -106,7 +111,8 @@ export default class Search extends React.Component {
             name: data.Title,
             id: data.imdbID,
           });
-
+       
+     
           try {
             const rating1 = [data.Ratings[0].Source, data.Ratings[0].Value];
             const rating2 = [data.Ratings[1].Source, data.Ratings[1].Value];

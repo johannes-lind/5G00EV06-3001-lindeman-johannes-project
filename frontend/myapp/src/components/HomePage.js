@@ -19,11 +19,11 @@ export default class HomePage extends React.Component {
 
   // function to search film from API
   async search(props) {
-    let url = `/api3`; //`https://imdb-api.com/en/API/MostPopularMovies/${key}`;
+    let url = `/popular`; //`https://imdb-api.com/en/API/MostPopularMovies/${key}`;
 
     // function to change the url and send it to App-components
     const GetFilm = (id) => {
-      url = `/api1?i=${id}`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
 
@@ -46,7 +46,7 @@ export default class HomePage extends React.Component {
             titles[i] = titles[i].slice(0, 14);
             titles[i] = `${titles[i]}...`;
           }
-          console.log(data);
+         // console.log(data);
           ids[i] = data.items[i].id;
           images[i] = (
             <td>
@@ -60,7 +60,7 @@ export default class HomePage extends React.Component {
                 />
                 <Route path="/Search">
                   <Search
-                    URL={`/api1?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                    URL={`/find?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                   />
                 </Route>
               </Link>
@@ -99,7 +99,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <>
-        <header className="header">Most popular films </header>
+        <header className="header"> TODAY'S MOST POPULAR FILMS </header>
         <table className="list"> {this.state.info}</table>
       </>
     );

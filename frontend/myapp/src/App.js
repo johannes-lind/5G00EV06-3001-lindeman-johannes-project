@@ -14,13 +14,14 @@ import {
 import { render } from "@testing-library/react";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
+import Top100 from "./components/Top100";
 import Hot100 from "./components/Hot100";
 const axios = require("axios");
 
 function App() {
   let [film, setFilm] = React.useState("Twin Peaks");
   let [url, setUrl] = React.useState(
-    `/api1?t=${film}` //`https://www.omdbapi.com/?t=${film}&apikey=${key}`
+    `/find?t=${film}` //`https://www.omdbapi.com/?t=${film}&apikey=${key}`
   );
 
   // sending the url to Search -component
@@ -29,7 +30,7 @@ function App() {
   };
   //changing the url based on input
   const change = () => {
-    setUrl(`/api1?t=${film}`); //`https://www.omdbapi.com/?t=${film}&apikey=${key}`);
+    setUrl(`/find?t=${film}`); //`https://www.omdbapi.com/?t=${film}&apikey=${key}`);
     GetFilm();
   };
 
@@ -48,13 +49,17 @@ function App() {
               <Link to={"/Search"} className="nav-link">
                 {"    "} Search
               </Link>
+               <> </>
+              <Link to={"/Top100"} className="nav-link">
+                {"    "} Top100
+              </Link>
               <> </>
               <Link to={"/ComingSoon"} className="nav-link">
                 {"    "} Coming Soon
               </Link>
               <> </>
               <Link to={"/Hot100"} className="nav-link">
-                {"    "}HOT100
+                {"    "}Hot100
               </Link>
               <Link to={"/Watchlist"} className="nav-link">
                 {"    "} Watchlist
@@ -87,7 +92,10 @@ function App() {
                 <HomePage set={setUrl} />
               </Route>
               <Route path="/Search">
-                <Search URL={url} set={setFilm} />
+                <Search URL={url} set={setUrl} />
+              </Route>
+               <Route path="/Top100">
+                <Top100 set={setUrl} />
               </Route>
               <Route path="/ComingSoon">
                 <ComingSoon set={setUrl} />

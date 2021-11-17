@@ -20,7 +20,7 @@ export default class ComingSoon extends React.Component {
   }
 
   async search(props) {
-    let url = `/api2`; //`https://imdb-api.com/en/API/ComingSoon/${key}`;
+    let url = `/upcoming`; //`https://imdb-api.com/en/API/ComingSoon/${key}`;
 
     const GetFilm = (id) => {
       change(id);
@@ -28,7 +28,7 @@ export default class ComingSoon extends React.Component {
     };
 
     const change = (id) => {
-      url = `/api1?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
       // return <Search URL={url} />;
     };
@@ -61,7 +61,7 @@ export default class ComingSoon extends React.Component {
               />
               <Route path="/Search">
                 <Search
-                  URL={`/api1?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                  URL={`/find?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                 />
               </Route>
             </Link>
