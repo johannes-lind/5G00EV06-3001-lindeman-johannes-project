@@ -18,17 +18,19 @@ export default class Top100 extends React.Component {
 
   async search() {
     let url = `/top`;
+    // delivers the id to change function
     const GetFilm = (id) => {
       change(id);
       console.log(id);
     };
-
+    // setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
       url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
     axios.get(url).then((res) => {
       const data = res.data;
+      // arrays to hold the information needed
       const imgUrls = [];
       const images = [];
       const titles = [];
@@ -38,7 +40,7 @@ export default class Top100 extends React.Component {
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
         if (titles[i].length > 17) {
-          titles[i] = titles[i].slice(0, 12);
+          titles[i] = titles[i].slice(0, 13);
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
@@ -67,6 +69,7 @@ export default class Top100 extends React.Component {
           </td>
         );
       }
+      // setting the posters in rows of 5
       let rows = [];
       for (let i = 0; i < images.length; i++) {
         if (i % 5 === 0) {

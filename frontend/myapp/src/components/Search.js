@@ -5,6 +5,7 @@ import "./components.css";
 
 export default class Search extends React.Component {
   _isMounted = false;
+  // state components to hold and deliver information to other React components
   state = {
     info: [],
     name: " ",
@@ -39,7 +40,9 @@ export default class Search extends React.Component {
       // checking if the search url is changed to prevent infinite loop
       if (nextProps.URL !== this.props.URL) {
         this.search();
-      
+        this.setState({
+          onList: [<></>],
+        });
       }
     } catch (error) {
       this.setState({ info: <p> No results found </p> });
@@ -48,7 +51,7 @@ export default class Search extends React.Component {
   }
   // letting it show when "add to watchlist" is clicked and the film is added to list
   added = () => {
-   // alert("Added to watchlist");
+    // alert("Added to watchlist");
     this.setState({
       onList: [<>✅</>],
     });
@@ -60,10 +63,10 @@ export default class Search extends React.Component {
     await axios.get(this.props.URL).then((res) => {
       const data = res.data;
       const image = data.Poster;
-      console.log("Search called")
+      console.log("Search called");
       if (data.Response === "False") {
         this.setState({ info: [<p> Not found </p>] });
-       // alert("No results, search a different title");
+        // alert("No results, search a different title");
       } else {
         if (this._isMounted) {
           this.setState({
@@ -111,8 +114,7 @@ export default class Search extends React.Component {
             name: data.Title,
             id: data.imdbID,
           });
-       
-     
+
           try {
             const rating1 = [data.Ratings[0].Source, data.Ratings[0].Value];
             const rating2 = [data.Ratings[1].Source, data.Ratings[1].Value];

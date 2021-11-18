@@ -22,13 +22,14 @@ export default class Hot100 extends React.Component {
       change(id);
       console.log(id);
     };
-
+// setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
       url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
     axios.get(url).then((res) => {
       const data = res.data;
+      // arrays to hold the information needed
       const imgUrls = [];
       const images = [];
       const titles = [];

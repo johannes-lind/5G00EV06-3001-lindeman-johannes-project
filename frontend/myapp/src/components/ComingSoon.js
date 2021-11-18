@@ -13,6 +13,8 @@ import { render } from "@testing-library/react";
 export default class ComingSoon extends React.Component {
   state = {
     info: [],
+    onList: [],
+    toggle: true,
   };
 
   componentDidMount(props) {
@@ -26,6 +28,10 @@ export default class ComingSoon extends React.Component {
       change(id);
       console.log(id);
     };
+    // if user add's item to watchlist, the button will stop showing and will show ✅ instead
+    const added = () => {
+      this.setState({ toggle: false });
+    };
 
     const change = (id) => {
       url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
@@ -38,7 +44,7 @@ export default class ComingSoon extends React.Component {
       const images = [];
       const titles = [];
       const ids = [];
-   
+
       for (let i = 0; i < data.items.length; i++) {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
@@ -67,12 +73,18 @@ export default class ComingSoon extends React.Component {
             </Link>
             <p text-align="center">{titles[i]}</p>
             <p>
-              <button
-                className="b"
-                onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
-              >
-                Add to Watchlist
-              </button>
+              {this.state.toggle ? (
+                <button
+                  className="b"
+                  onClick={
+                    (() => AddToList(ids[i], titles[i], imgUrls[i]), added())
+                  }
+                >
+                  Add to Watchlist
+                </button>
+              ) : (
+                <>✅</>
+              )}
             </p>
           </td>
         );
@@ -93,8 +105,6 @@ export default class ComingSoon extends React.Component {
   render() {
     return (
       <>
-        {" "}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <header className="header" text-align="center">
           Coming Soon
         </header>

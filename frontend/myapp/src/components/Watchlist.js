@@ -64,13 +64,14 @@ export default class Watchlist extends React.Component {
     const images = [];
 
     for (let i = 0; i < img.length; i++) {
+      // Handling for titles that are so long that they mess up the view
+      if (title[i].length > 17) {
+        title[i] = title[i].slice(0, 15);
+        title[i] = `${title[i]}...`;
+      }
       images[i] = (
         <td>
-          <Link
-            to={"/Search"}
-            // className="nav-link"
-            onClick={() => this.change(id[i])}
-          >
+          <Link to={"/Search"} onClick={() => this.change(id[i])}>
             <img
               key={i}
               src={img[i]}
@@ -100,7 +101,7 @@ export default class Watchlist extends React.Component {
         </td>
       );
     }
-    // creating a table if the watchlist is longer than 5
+    // setting posters in rows of 5
     if (img.length < 6) {
       this.setState({ posters: [<table className="list">{images}</table>] });
     } else {

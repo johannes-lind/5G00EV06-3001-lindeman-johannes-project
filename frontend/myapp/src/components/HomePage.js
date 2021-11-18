@@ -31,6 +31,7 @@ export default class HomePage extends React.Component {
     try {
       axios.get(url).then((res) => {
         const data = res.data;
+          // arrays to hold the information needed
         const imgUrls = [];
         const images = [];
         const ids = [];

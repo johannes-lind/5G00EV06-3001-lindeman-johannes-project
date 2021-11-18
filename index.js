@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
-
+/*
 // for developing:
-/*app.use(express.static("frontend/myapp/build"));
+app.use(express.static("frontend/myapp/build"));
 
 app.use("/find", require("./routes/index1"));
 app.use("/upcoming", require("./routes/index2"));
@@ -15,15 +15,16 @@ app.use("/top", require("./routes/index4"));
 app.use(cors());
 
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "/frontend/myapp/build/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
+  res.sendFile(
+    path.join(__dirname, "/frontend/myapp/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
     }
-  });
+  );
 });
 */
-
-
 // for publishing
 
 app.use(express.static("public"));
