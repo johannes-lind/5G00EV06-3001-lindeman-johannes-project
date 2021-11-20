@@ -4,7 +4,7 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
-/*
+
 // for developing:
 app.use(express.static("frontend/myapp/build"));
 
@@ -24,9 +24,9 @@ app.get("/*", function (req, res) {
     }
   );
 });
-*/
-// for publishing
 
+// for publishing
+/*
 app.use(express.static("public"));
 
 // hiding api keys
@@ -45,7 +45,7 @@ app.get("/*", function (req, res) {
     }
   });
 });
-
+*/
 app.listen(port, () => {
   console.log("Example app listening at http://localhost:" + port);
 });

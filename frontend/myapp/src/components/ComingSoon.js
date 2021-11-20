@@ -77,7 +77,8 @@ export default class ComingSoon extends React.Component {
                 <button
                   className="b"
                   onClick={
-                    (() => AddToList(ids[i], titles[i], imgUrls[i]), added())
+                    (() => AddToList(ids[i], titles[i], imgUrls[i]),
+                    () => added())
                   }
                 >
                   Add to Watchlist

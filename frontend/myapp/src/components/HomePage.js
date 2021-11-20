@@ -31,7 +31,7 @@ export default class HomePage extends React.Component {
     try {
       axios.get(url).then((res) => {
         const data = res.data;
-          // arrays to hold the information needed
+        // arrays to hold the information needed
         const imgUrls = [];
         const images = [];
         const ids = [];
@@ -47,7 +47,7 @@ export default class HomePage extends React.Component {
             titles[i] = titles[i].slice(0, 14);
             titles[i] = `${titles[i]}...`;
           }
-         // console.log(data);
+          // console.log(data);
           ids[i] = data.items[i].id;
           images[i] = (
             <td>

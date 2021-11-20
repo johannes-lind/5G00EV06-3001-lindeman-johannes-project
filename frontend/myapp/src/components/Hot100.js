@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Search from "./Search";
+import AddToList from "./AddToList";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,6 +11,7 @@ import {
 export default class Hot100 extends React.Component {
   state = {
     info: [],
+    onList: [],
   };
 
   componentDidMount() {
@@ -17,12 +19,17 @@ export default class Hot100 extends React.Component {
   }
 
   async search() {
+    this.setState({ onList: [<>+</>] });
     let url = `/popular`;
     const GetFilm = (id) => {
       change(id);
       console.log(id);
     };
-// setting and sending url to app.js, which delivers it to Search.js as props
+    const listed = () => {
+      this.setState({ onList: [<>✅</>] });
+    };
+
+    // setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
       url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
@@ -38,7 +45,7 @@ export default class Hot100 extends React.Component {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
-        if (titles[i].length > 17) {
+        if (titles[i].length > 15) {
           titles[i] = titles[i].slice(0, 12);
           titles[i] = `${titles[i]}...`;
         }
@@ -52,8 +59,8 @@ export default class Hot100 extends React.Component {
                   onClick={() => GetFilm(ids[i])}
                   src={imgUrls[i]}
                   alt="poster"
-                  width="150"
-                  height="200"
+                  width="160"
+                  height="225"
                 />
                 <Route path="/Search">
                   <Search
@@ -62,7 +69,16 @@ export default class Hot100 extends React.Component {
                 </Route>
               </Link>
               <p text-align="center">
-                {[i + 1]}. {titles[i]}
+                {[i + 1]}. {titles[i]}{" "}
+                <button
+                  className="b"
+                  onClick={
+                    () => AddToList(ids[i], titles[i], imgUrls[i])
+                    //,() => listed())
+                  }
+                >
+                  {this.state.onList}
+                </button>
               </p>
             </>
           </td>

@@ -13,7 +13,6 @@ import {
 } from "react-router-dom";
 import { render } from "@testing-library/react";
 import HomePage from "./components/HomePage";
-import Login from "./components/Login";
 import Top100 from "./components/Top100";
 import Hot100 from "./components/Hot100";
 const axios = require("axios");
@@ -39,7 +38,6 @@ function App() {
       <body>
         <div className="App">
           <header className="App-header">
-            {/*  <Login /> */}
             <nav className="nav-link">
               <Link to={"/HomePage"} className="nav-link">
                 {"   "}
@@ -49,7 +47,7 @@ function App() {
               <Link to={"/Search"} className="nav-link">
                 {"    "} Search
               </Link>
-               <> </>
+              <> </>
               <Link to={"/Top100"} className="nav-link">
                 {"    "} Top100
               </Link>
@@ -59,10 +57,10 @@ function App() {
               </Link>
               <> </>
               <Link to={"/Hot100"} className="nav-link">
-                {"    "}Hot100
+                {"    "} Hot100
               </Link>
               <Link to={"/Watchlist"} className="nav-link">
-                {"    "} Watchlist
+                {"     "} Watchlist
               </Link>
             </nav>
             <p>
@@ -93,7 +91,7 @@ function App() {
               <Route path="/Search">
                 <Search URL={url} set={setUrl} />
               </Route>
-               <Route path="/Top100">
+              <Route path="/Top100">
                 <Top100 set={setUrl} />
               </Route>
               <Route path="/ComingSoon">

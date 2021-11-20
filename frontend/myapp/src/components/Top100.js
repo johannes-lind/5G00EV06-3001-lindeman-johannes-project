@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Search from "./Search";
+import AddToList from "./AddToList";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,6 +11,7 @@ import {
 export default class Top100 extends React.Component {
   state = {
     info: [],
+    onList: [],
   };
 
   componentDidMount() {
@@ -17,6 +19,7 @@ export default class Top100 extends React.Component {
   }
 
   async search() {
+    this.setState({ onList: [<>+</>] });
     let url = `/top`;
     // delivers the id to change function
     const GetFilm = (id) => {
@@ -39,8 +42,8 @@ export default class Top100 extends React.Component {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
-        if (titles[i].length > 17) {
-          titles[i] = titles[i].slice(0, 13);
+        if (titles[i].length > 15) {
+          titles[i] = titles[i].slice(0, 12);
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
@@ -53,8 +56,8 @@ export default class Top100 extends React.Component {
                   onClick={() => GetFilm(ids[i])}
                   src={imgUrls[i]}
                   alt="poster"
-                  width="150"
-                  height="200"
+                  width="160"
+                  height="225"
                 />
                 <Route path="/Search">
                   <Search
@@ -63,7 +66,13 @@ export default class Top100 extends React.Component {
                 </Route>
               </Link>
               <p text-align="center">
-                {[i + 1]}. {titles[i]}
+                {[i + 1]}. {titles[i]}{" "}
+                <button
+                  className="b"
+                  onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
+                >
+                  {this.state.onList}
+                </button>
               </p>
             </>
           </td>
