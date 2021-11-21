@@ -14,8 +14,6 @@ export default class Watchlist extends React.Component {
       let ids = JSON.parse(localStorage.getItem("ids"));
       let titles = JSON.parse(localStorage.getItem("titles"));
       let images = JSON.parse(localStorage.getItem("images"));
-      console.log(ids);
-      console.log(images);
       this.setState({ names: ids });
       this.setter(ids, titles, images);
     } catch (error) {
@@ -32,7 +30,7 @@ export default class Watchlist extends React.Component {
 
   // function to change the url in the App-component
   change = (id) => {
-    let url = `/find?i=${id}`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+    let url = `/find?i=${id}&plot=full`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
     this.props.set(url);
   };
 
@@ -54,7 +52,7 @@ export default class Watchlist extends React.Component {
     localStorage.setItem("ids", JSON.stringify(newIds));
     localStorage.setItem("titles", JSON.stringify(newTitles));
     localStorage.setItem("images", JSON.stringify(newImages));
-    console.log(newIds);
+    // setting the updated list after item is deleted
     this.setter(newIds, newTitles, newImages);
   };
 
@@ -80,13 +78,13 @@ export default class Watchlist extends React.Component {
               height="280"
               onClick={() => {
                 <Search
-                  URL={`/find?i=${id[i]}`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                  URL={`/find?i=${id[i]}&plot=full`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
                 />;
               }}
             />
             <Route path="/Search">
               <Search
-                URL={`/find?i=${id[i]}`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                URL={`/find?i=${id[i]}&plot=full`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
               />
             </Route>
           </Link>
@@ -118,7 +116,7 @@ export default class Watchlist extends React.Component {
 
   render() {
     return (
-      <div className="posters">
+      <div>
         <p align="center">
           <button align="center" className="b" onClick={() => this.ClearList()}>
             Clear List

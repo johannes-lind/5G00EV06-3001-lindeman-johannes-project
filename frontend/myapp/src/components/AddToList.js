@@ -21,4 +21,5 @@ export default function AddToList(id, title, image) {
   localStorage.setItem("ids", JSON.stringify(idlist));
   localStorage.setItem("titles", JSON.stringify(titlelist));
   localStorage.setItem("images", JSON.stringify(imagelist));
+  console.log("Added to list");
 }

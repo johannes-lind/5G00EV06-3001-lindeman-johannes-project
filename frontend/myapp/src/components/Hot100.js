@@ -11,27 +11,22 @@ import {
 export default class Hot100 extends React.Component {
   state = {
     info: [],
-    onList: [],
   };
-
+  // Performing the search function on mount to get, handle and display data
   componentDidMount() {
     this.search();
   }
 
   async search() {
-    this.setState({ onList: [<>+</>] });
     let url = `/popular`;
     const GetFilm = (id) => {
       change(id);
       console.log(id);
     };
-    const listed = () => {
-      this.setState({ onList: [<>✅</>] });
-    };
 
     // setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
-      url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}&plot=full`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
     axios.get(url).then((res) => {
@@ -64,7 +59,7 @@ export default class Hot100 extends React.Component {
                 />
                 <Route path="/Search">
                   <Search
-                    URL={`/find?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                    URL={`/find?i=${ids[i]}&plot=full`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
                   />
                 </Route>
               </Link>
@@ -72,12 +67,9 @@ export default class Hot100 extends React.Component {
                 {[i + 1]}. {titles[i]}{" "}
                 <button
                   className="b"
-                  onClick={
-                    () => AddToList(ids[i], titles[i], imgUrls[i])
-                    //,() => listed())
-                  }
+                  onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
                 >
-                  {this.state.onList}
+                  +
                 </button>
               </p>
             </>

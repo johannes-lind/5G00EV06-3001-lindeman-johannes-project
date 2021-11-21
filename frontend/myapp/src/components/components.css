@@ -31,10 +31,7 @@
   color: blueviolet;
   border: 3px slateblue;
 }
-.posters {
-  width: auto;
-  max-width: 1200px;
-}
+
 .infoarticle {
   border: 2px solid #000;
   font-family: "Times New Roman", Times, serif;
