@@ -63,7 +63,6 @@ export default class Search extends React.Component {
     await axios.get(this.props.URL).then((res) => {
       const data = res.data;
       const image = data.Poster;
-      console.log("Search called");
       if (data.Response === "False") {
         this.setState({ info: [<p> Not found </p>] });
         // alert("No results, search a different title");

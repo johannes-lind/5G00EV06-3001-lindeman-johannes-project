@@ -56,12 +56,12 @@ export default class HomePage extends React.Component {
                   key={data.items[i].id}
                   src={imgUrls[i]}
                   alt="poster"
-                  width="160"
-                  height="225"
+                  width="200"
+                  height="280"
                 />
                 <Route path="/Search">
                   <Search
-                    URL={`/find?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                    URL={`/find?i=${ids[i]}`} 
                   />
                 </Route>
               </Link>

@@ -40,8 +40,8 @@ export default class Hot100 extends React.Component {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
-        if (titles[i].length > 15) {
-          titles[i] = titles[i].slice(0, 12);
+        if (titles[i].length > 17) {
+          titles[i] = titles[i].slice(0, 15);
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
@@ -54,8 +54,8 @@ export default class Hot100 extends React.Component {
                   onClick={() => GetFilm(ids[i])}
                   src={imgUrls[i]}
                   alt="poster"
-                  width="160"
-                  height="225"
+                  width="200"
+                  height="280"
                 />
                 <Route path="/Search">
                   <Search

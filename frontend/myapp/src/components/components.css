@@ -18,18 +18,15 @@
   border-radius: 15px;
 }
 .header {
+  padding-top: 12px;
   padding-left: 10px;
+  padding-bottom: 12px;
   font-family: "Times New Roman", Times, serif;
   font-size: 22px;
 }
 .ratings {
   font-size: 20px;
   font-family: "Times New Roman", Times, serif;
-}
-.thebuttons:hover {
-  background-color: darkmagenta;
-  color: blueviolet;
-  border: 3px slateblue;
 }
 
 .infoarticle {

@@ -50,7 +50,7 @@ export default class ComingSoon extends React.Component {
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
         if (titles[i].length > 17) {
-          titles[i] = titles[i].slice(0, 14);
+          titles[i] = titles[i].slice(0, 15);
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
@@ -62,8 +62,8 @@ export default class ComingSoon extends React.Component {
                 onClick={() => GetFilm(ids[i])}
                 src={imgUrls[i]}
                 alt="poster"
-                width="170"
-                height="230"
+                width="200"
+                height="280"
               />
               <Route path="/Search">
                 <Search
@@ -71,28 +71,21 @@ export default class ComingSoon extends React.Component {
                 />
               </Route>
             </Link>
-            <p text-align="center">{titles[i]}</p>
-            <p>
-              {this.state.toggle ? (
-                <button
-                  className="b"
-                  onClick={
-                    (() => AddToList(ids[i], titles[i], imgUrls[i]),
-                    () => added())
-                  }
-                >
-                  Add to Watchlist
-                </button>
-              ) : (
-                <>✅</>
-              )}
+            <p text-align="center">
+              {titles[i]}{" "}
+              <button
+                className="b"
+                onClick={() => AddToList(ids[i], titles[i], imgUrls[i])}
+              >
+                +
+              </button>
             </p>
           </td>
         );
       }
       let rows = [];
       for (let i = 0; i < images.length; i++) {
-        if (i % 4 === 0) {
+        if (i % 5 === 0) {
           rows.push(<tr>{}</tr>);
         }
         rows.push(images[i]);
@@ -109,7 +102,7 @@ export default class ComingSoon extends React.Component {
         <header className="header" text-align="center">
           Coming Soon
         </header>
-        <div className="posters">{this.state.info}</div>
+        <div>{this.state.info}</div>
       </>
     );
   }

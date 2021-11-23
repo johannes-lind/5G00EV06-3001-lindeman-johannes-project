@@ -15,11 +15,13 @@
 
 .nav-link {
   margin: auto;
-  font-size: x-large;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 22px;
   color: rgb(233, 241, 113);
-
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Times New Roman"; /*, Times, serif;*/
 }
+
 .list {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
@@ -45,7 +47,35 @@
   background-position: 10px 10px;
   background-repeat: no-repeat;
   font-size: medium;
+
   padding-left: 10px;
+}
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 1px;
+  padding: 1px;
+  overflow: hidden;
+  border: 2px solid #e7e7e8;
+  background-color: #1a0808;
+  top: 0;
+  width: 100%;
+}
+li {
+  opacity: 1;
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 15px 17px;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+}
+Link {
+  text-decoration: none;
+}
+li:hover {
+  background-color: #3f0404;
 }
 
 @keyframes App-logo-spin {

@@ -12,6 +12,8 @@ app.use("/find", require("./routes/index1"));
 app.use("/upcoming", require("./routes/index2"));
 app.use("/popular", require("./routes/index3"));
 app.use("/top", require("./routes/index4"));
+app.use("/topTV", require("./routes/index5"));
+app.use("/popularTV", require("./routes/index6"));
 app.use(cors());
 
 app.get("/*", function (req, res) {

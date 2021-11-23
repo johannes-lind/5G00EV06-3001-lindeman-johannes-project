@@ -8,7 +8,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-export default class Top100 extends React.Component {
+export default class Hot100 extends React.Component {
   state = {
     info: [],
   };
@@ -18,12 +18,12 @@ export default class Top100 extends React.Component {
   }
 
   async search() {
-    let url = `/top`;
-    // delivers the id to change function
+    let url = `/popularTV`;
     const GetFilm = (id) => {
       change(id);
       console.log(id);
     };
+
     // setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
       url = `/find?i=${id}&plot=full`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
@@ -76,7 +76,6 @@ export default class Top100 extends React.Component {
           </td>
         );
       }
-      // setting the posters in rows of 5
       let rows = [];
       for (let i = 0; i < images.length; i++) {
         if (i % 5 === 0) {
@@ -94,9 +93,9 @@ export default class Top100 extends React.Component {
     return (
       <>
         <header className="header" text-align="center">
-          IMDB'S 100 TOP RATED FILMS
+          TODAY'S 100 MOST POPULAR FILMS
         </header>
-        <div> {this.state.info}</div>
+        <div className="posters"> {this.state.info}</div>
       </>
     );
   }

@@ -18,7 +18,7 @@ export default class Top100 extends React.Component {
   }
 
   async search() {
-    let url = `/top`;
+    let url = `/topTV`;
     // delivers the id to change function
     const GetFilm = (id) => {
       change(id);
@@ -94,7 +94,7 @@ export default class Top100 extends React.Component {
     return (
       <>
         <header className="header" text-align="center">
-          IMDB'S 100 TOP RATED FILMS
+          IMDB'S 100 TOP RATED TV SHOWS
         </header>
         <div> {this.state.info}</div>
       </>
