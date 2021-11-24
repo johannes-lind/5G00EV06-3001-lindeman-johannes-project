@@ -63,8 +63,8 @@ export default class Watchlist extends React.Component {
 
     for (let i = 0; i < img.length; i++) {
       // Handling for titles that are so long that they mess up the view
-      if (title[i].length > 17) {
-        title[i] = title[i].slice(0, 15);
+      if (title[i].length > 18) {
+        title[i] = title[i].slice(0, 16);
         title[i] = `${title[i]}...`;
       }
       images[i] = (
