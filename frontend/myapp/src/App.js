@@ -39,7 +39,7 @@ function App() {
   // and redirect automatically to homepage
   return (
     <Router>
-      <body>
+      <body className="App-body">
         <div className="App">
           <header className="App-header">
             <ul>
