@@ -34,3 +34,26 @@ Release 1: 2021-11-15 features:
 -User can click the poster of films listed in any view to see the film's information.
 
 -User can exit and open the app and watchlist is saved to persistant storage.
+
+Release 2: 2021-11-29 features:
+
+-Homepage shows suggestions of 15 popular films and tv shows
+
+-User can see lists of 100 best rated films and tv shows
+
+-User can see lists of 100 currently most popular films and tv shows 
+
+-User can search films and tv shows by title.
+
+-User can see information for searched films and tv shows.
+
+-User can add films and tv shows to watchlist.
+
+-User can remove films and tv shows from watchlist.
+
+-User can clear watchlist.
+
+-User can click the poster of films and tv shows listed in any view to see the film's/show's information.
+
+-User can exit and open the app and watchlist is saved to persistant storage.
+
