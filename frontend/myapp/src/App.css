@@ -1,7 +1,17 @@
-.App {
-  text-align: start;
+body {
   width: 100%;
-  background-color: #0c0303;
+  align-content: center;
+  align-items: center;
+
+  background-color: #02030f;
+}
+
+.App {
+  align-content: center;
+  width: 100%;
+  min-width: fit-content;
+  background-color: #02030f;
+  overflow-x: hidden;
 }
 
 .b {
@@ -26,10 +36,12 @@
   text-align: center;
   font-family: "Merriweather";
   font-size: 22px;
-  width: auto;
+  width: fit-content;
 }
 .App-header {
   background-color: #02030f;
+  height: 100%;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,7 +56,7 @@
 }
 .customInput {
   background-color: white;
-  background-position: 5px 5px;
+  /*  background-position: 5px 5px;*/
   background-repeat: no-repeat;
   font-size: medium;
 
@@ -59,7 +71,7 @@ ul {
   border: 2px solid #e7e7e8;
   background-color: #040611;
   top: 0;
-  width: 100%;
+  width: fit-content;
 }
 li {
   opacity: 1;
@@ -75,7 +87,7 @@ Link {
   text-decoration: none;
 }
 li:hover {
-  background-color: #080322;
+  background-color: #180488;
 }
 
 @keyframes App-logo-spin {
