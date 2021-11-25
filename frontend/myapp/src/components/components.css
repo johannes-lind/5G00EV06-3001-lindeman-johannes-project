@@ -28,7 +28,7 @@
   font-family: "Merriweather";
   font-size: 20px;
   max-width: 1200px;
-  width: auto;
+  width: 100%;
 }
 .b {
   border: none;

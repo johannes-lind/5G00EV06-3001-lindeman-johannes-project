@@ -1,6 +1,6 @@
 .App {
   text-align: start;
-  width: auto;
+  width: 100%;
   background-color: #0c0303;
 }
 
@@ -75,7 +75,7 @@ Link {
   text-decoration: none;
 }
 li:hover {
-  background-color: #3f0404;
+  background-color: #080322;
 }
 
 @keyframes App-logo-spin {
