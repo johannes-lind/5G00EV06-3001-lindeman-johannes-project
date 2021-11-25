@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Search from "./Search";
 import "./components.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 export default class HomePage extends React.Component {
   state = {
     filminfo: [],
@@ -14,7 +14,8 @@ export default class HomePage extends React.Component {
       this.searchfilm(props);
       this.searchtv(props);
     } catch (error) {
-      this.setState({ info: <p> </p> });
+      this.setState({ filminfo: <p> </p> });
+      this.setState({ tvinfo: <p> </p> });
       console.log(error);
     }
   }
@@ -96,71 +97,68 @@ export default class HomePage extends React.Component {
       url = `/find?i=${id}&plot=full`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
       this.props.set(url);
     };
-     try {
-    axios.get(url).then((res) => {
-      const data = res.data;
-      // arrays to hold the information needed
-      const imgUrls = [];
-      const images = [];
-      const titles = [];
-      const ids = [];
-      for (let i = 0; i < 15; i++) {
-        imgUrls[i] = data.items[i].image;
-        titles[i] = data.items[i].title;
-        // Handling for titles that are so long that they mess up the view
-        if (titles[i].length > 17) {
-          titles[i] = titles[i].slice(0, 14);
-          titles[i] = `${titles[i]}...`;
-        }
-        ids[i] = data.items[i].id;
-        images[i] = (
-          <td>
-            <>
-              <Link to={"/Search"}>
-                <img
-                  key={i}
-                  onClick={() => GetFilm(ids[i])}
-                  src={imgUrls[i]}
-                  alt="poster"
-                  width="200"
-                  height="280"
-                />
-                <Route path="/Search">
-                  <Search
-                    URL={`/find?i=${ids[i]}&plot=full`} 
+    try {
+      axios.get(url).then((res) => {
+        const data = res.data;
+        // arrays to hold the information needed
+        const imgUrls = [];
+        const images = [];
+        const titles = [];
+        const ids = [];
+        for (let i = 0; i < 15; i++) {
+          imgUrls[i] = data.items[i].image;
+          titles[i] = data.items[i].title;
+          // Handling for titles that are so long that they mess up the view
+          if (titles[i].length > 17) {
+            titles[i] = titles[i].slice(0, 14);
+            titles[i] = `${titles[i]}...`;
+          }
+          ids[i] = data.items[i].id;
+          images[i] = (
+            <td>
+              <>
+                <Link to={"/Search"}>
+                  <img
+                    key={i}
+                    onClick={() => GetFilm(ids[i])}
+                    src={imgUrls[i]}
+                    alt="poster"
+                    width="200"
+                    height="280"
                   />
-                </Route>
-              </Link>
-              <p text-align="center">{titles[i]} </p>
-            </>
-          </td>
-        );
-      }
-      // Setting the images in a table with rows of 5
-      let tvrows = [];
-      for (let i = 0; i < images.length; i++) {
-        if (i % 5 === 0) {
-          tvrows.push(<tr>{}</tr>);
+                  <Route path="/Search">
+                    <Search URL={`/find?i=${ids[i]}&plot=full`} />
+                  </Route>
+                </Link>
+                <p text-align="center">{titles[i]} </p>
+              </>
+            </td>
+          );
         }
-        tvrows.push(images[i]);
-      }
-      this.setState({
-        tvinfo: [<table className="toplist">{tvrows}</table>],
+        // Setting the images in a table with rows of 5
+        let tvrows = [];
+        for (let i = 0; i < images.length; i++) {
+          if (i % 5 === 0) {
+            tvrows.push(<tr>{}</tr>);
+          }
+          tvrows.push(images[i]);
+        }
+        this.setState({
+          tvinfo: [<table className="list">{tvrows}</table>],
+        });
       });
-    });
-  }
-  catch(error){
-    // in case the number of API-requests is exceeded
-    this.setState({ tvinfo: <p> Request limit exceeded! </p> });
-   }
+    } catch (error) {
+      // in case the number of API-requests is exceeded
+      this.setState({ tvinfo: <p> Request limit exceeded! </p> });
+    }
   }
   // Displaying the content
   render() {
     return (
       <>
-        <header className="header"> POPULAR FILMS </header>
+        <header className="header"> FILM SUGGESTIONS </header>
         <table className="list"> {this.state.filminfo}</table>
-        <header className="header"> POPULAR ON TV </header>
+        <header className="header"> TV SUGGESTIONS </header>
         <table className="list"> {this.state.tvinfo}</table>
       </>
     );

@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect,
 } from "react-router-dom";
 export default class Hot100 extends React.Component {
   state = {
@@ -40,8 +39,8 @@ export default class Hot100 extends React.Component {
         imgUrls[i] = data.items[i].image;
         titles[i] = data.items[i].title;
         // Handling for titles that are so long that they mess up the view
-        if (titles[i].length > 17) {
-          titles[i] = titles[i].slice(0, 15);
+        if (titles[i].length > 16) {
+          titles[i] = titles[i].slice(0, 13);
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
@@ -84,7 +83,7 @@ export default class Hot100 extends React.Component {
         rows.push(images[i]);
       }
       this.setState({
-        info: [<table className="toplist">{rows}</table>],
+        info: [<table className="list">{rows}</table>],
       });
     });
   }
@@ -95,7 +94,7 @@ export default class Hot100 extends React.Component {
         <header className="header" text-align="center">
           TODAY'S 100 MOST POPULAR FILMS
         </header>
-        <div className="posters"> {this.state.info}</div>
+        <div> {this.state.info}</div>
       </>
     );
   }

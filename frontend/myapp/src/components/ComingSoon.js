@@ -7,9 +7,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect,
 } from "react-router-dom";
-import { render } from "@testing-library/react";
 export default class ComingSoon extends React.Component {
   state = {
     info: [],

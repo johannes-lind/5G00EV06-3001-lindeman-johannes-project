@@ -35,7 +35,7 @@ function App() {
     GetFilm();
   };
 
-  // return links to pages, input field, search button
+  // return links to pages, input field, search button, event handlings
   // and redirect automatically to homepage
   return (
     <Router>
@@ -84,7 +84,6 @@ function App() {
               </li>
 
               <li>
-            
                 <Link to={"/Watchlist"} className="nav-link">
                   {"     "} Watchlist
                 </Link>
@@ -100,7 +99,7 @@ function App() {
                 size="40"
                 className="customInput"
                 type="text"
-                placeholder="film"
+                placeholder="film / tv"
                 onChange={(e) => {
                   setFilm(e.target.value);
                 }}

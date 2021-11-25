@@ -4,7 +4,7 @@ import AddToList from "./AddToList";
 import "./components.css";
 
 export default class Search extends React.Component {
-  _isMounted = false;
+  //_isMounted = false;
   // state components to hold and deliver information to other React components
   state = {
     info: [],
@@ -18,7 +18,7 @@ export default class Search extends React.Component {
   componentDidMount(props) {
     // clearing the checkmark with new searches
     this.setState({ onList: [] });
-    this._isMounted = true;
+    // this._isMounted = true;
     try {
       this.search();
     } catch (error) {
@@ -53,7 +53,7 @@ export default class Search extends React.Component {
   added = () => {
     // alert("Added to watchlist");
     this.setState({
-      onList: [<>✅</>],
+      onList: [<>🗹</>],
     });
     this.search();
   };
@@ -65,92 +65,87 @@ export default class Search extends React.Component {
       const image = data.Poster;
       if (data.Response === "False") {
         this.setState({ info: [<p> Not found </p>] });
-        // alert("No results, search a different title");
       } else {
-        if (this._isMounted) {
-          this.setState({
-            info: [
-              <div>
-                <h2>
-                  <p className="header">
-                    {data.Title} ({data.Year})
-                    <p>
-                      <button
-                        className="b"
-                        onClick={() => (
-                          AddToList(this.state.id, this.state.name, image),
-                          this.added()
-                        )}
-                      >
-                        Add to Watchlist
-                      </button>
-                      <small>{this.state.onList}</small>
-                    </p>
-                  </p>
-                  <img
-                    align="left"
-                    key="0"
-                    src={image}
-                    alt="poster"
-                    width="300"
-                    height="420"
-                  />
-                </h2>
-                <section className="infoarticle">
-                  <p>Rated: {data.Rated}</p>
-                  <p>Runtime: {data.Runtime}</p>
-                  <p>Starring: {data.Actors}</p>
-                  <p>Directed by: {data.Director}</p>
-                  <p>Writer: {data.Writer}</p>
-                  <p>Box Office: {data.BoxOffice}</p>
+        this.setState({
+          info: [
+            <div>
+              <h2>
+                <p className="header">
+                  {data.Title} ({data.Year})
                   <p>
-                    <em>{data.Plot}</em>
+                    <button
+                      className="b"
+                      onClick={() => (
+                        AddToList(this.state.id, this.state.name, image),
+                        this.added()
+                      )}
+                    >
+                      Add to Watchlist
+                    </button>
+                    <small>{this.state.onList}</small>
                   </p>
-                  <p>Awards: {data.Awards}</p>
-                </section>
-              </div>,
-            ],
-            name: data.Title,
-            id: data.imdbID,
-          });
-
-          try {
-            const rating1 = [data.Ratings[0].Source, data.Ratings[0].Value];
-            const rating2 = [data.Ratings[1].Source, data.Ratings[1].Value];
-            const rating3 = [data.Ratings[2].Source, data.Ratings[2].Value];
-            this.setState({
-              ratings: [
-                <ul>
-                  <li>
-                    {rating1[0]}: {rating1[1]}
-                  </li>
-
-                  <li>
-                    {rating2[0]}: {rating2[1]}
-                  </li>
-
-                  <li>
-                    {rating3[0]}: {rating3[1]}
-                  </li>
-                </ul>,
-              ],
-            });
-          } catch (error) {
-            this.setState({
-              ratings: [
+                </p>
+                <img
+                  align="left"
+                  key="0"
+                  src={image}
+                  alt="poster"
+                  width="300"
+                  height="420"
+                />
+              </h2>
+              <div className="infoarticle">
+                <p>Rated: {data.Rated}</p>
+                <p>Runtime: {data.Runtime}</p>
+                <p>Starring: {data.Actors}</p>
+                <p>Directed by: {data.Director}</p>
+                <p>Writer: {data.Writer}</p>
+                <p>Box Office: {data.BoxOffice}</p>
                 <p>
-                  <em>Ratings not available</em>
-                </p>,
-              ],
-            });
-          }
+                  <em>{data.Plot}</em>
+                </p>
+                <p>Awards: {data.Awards}</p>
+              </div>
+            </div>,
+          ],
+          name: data.Title,
+          id: data.imdbID,
+        });
+
+        try {
+          const rating1 = [data.Ratings[0].Source, data.Ratings[0].Value];
+          const rating2 = [data.Ratings[1].Source, data.Ratings[1].Value];
+          const rating3 = [data.Ratings[2].Source, data.Ratings[2].Value];
+          this.setState({
+            ratings: [
+              <ul>
+                <li>
+                  {rating1[0]}: {rating1[1]}
+                </li>
+
+                <li>
+                  {rating2[0]}: {rating2[1]}
+                </li>
+
+                <li>
+                  {rating3[0]}: {rating3[1]}
+                </li>
+              </ul>,
+            ],
+          });
+        } catch (error) {
+          this.setState({
+            ratings: [
+              <p>
+                <em>Ratings not available</em>
+              </p>,
+            ],
+          });
         }
       }
     });
   };
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
+
   render() {
     return (
       <div>
