@@ -5,9 +5,8 @@ const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 
-/*
 // for developing:
-
+/*
 app.use(express.static("frontend/myapp/build"));
 
 app.use("/find", require("./routes/index1"));

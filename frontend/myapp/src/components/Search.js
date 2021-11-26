@@ -82,7 +82,7 @@ export default class Search extends React.Component {
                     >
                       Add to Watchlist
                     </button>
-                    <small>{this.state.onList}</small>
+                    {this.state.onList}
                   </p>
                 </p>
                 <img
