@@ -60,3 +60,21 @@ Release 2: 2021-11-29 features:
 -User van view the page in landscape and portait mode
 
 -All pages scale accordingly to mobile devices
+
+Known bugs:
+
+-IMDb-API has had some issues in the past weeks and that can cause problems to all functionality except Search, Add to list and Watchlist 
+
+-Sometimes IMDb-API takes a long time to respond and can time out every now and then (currently working fine though)
+
+-Not really a bug, but when searching an item that has the same name as some other item, the app shows the one that is older
+
+Screencast:
+
+Unfortunately Youtube is refusing to handle the screencast as one video, so it is done in three parts:
+
+Part 1 (UI demonstration): https://youtu.be/EtAisQ35BbM
+
+Part 2 (Code): https://youtu.be/oIverhPPGQU
+
+Part 3 (Self evaluation): https://youtu.be/fw202RDenuo
