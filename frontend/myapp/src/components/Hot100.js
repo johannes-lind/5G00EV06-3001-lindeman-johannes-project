@@ -25,9 +25,10 @@ export default class Hot100 extends React.Component {
 
     // setting and sending url to app.js, which delivers it to Search.js as props
     const change = (id) => {
-      url = `/find?i=${id}&plot=full`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}&plot=full`;
       this.props.set(url);
     };
+    // using axios to get and parse fata from the url
     axios.get(url).then((res) => {
       const data = res.data;
       // arrays to hold the information needed
@@ -44,6 +45,7 @@ export default class Hot100 extends React.Component {
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
+        // all images are also links to the given items search page
         images[i] = (
           <td>
             <>
@@ -58,7 +60,7 @@ export default class Hot100 extends React.Component {
                 />
                 <Route path="/Search">
                   <Search
-                    URL={`/find?i=${ids[i]}&plot=full`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
+                    URL={`/find?i=${ids[i]}&plot=full`}
                   />
                 </Route>
               </Link>
@@ -75,6 +77,7 @@ export default class Hot100 extends React.Component {
           </td>
         );
       }
+      // setting content in rows of 5 posters
       let rows = [];
       for (let i = 0; i < images.length; i++) {
         if (i % 5 === 0) {

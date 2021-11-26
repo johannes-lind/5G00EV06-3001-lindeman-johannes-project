@@ -14,28 +14,21 @@ export default class ComingSoon extends React.Component {
     onList: [],
     toggle: true,
   };
-
+// execute search function on mount
   componentDidMount(props) {
     this.search(props);
   }
 
+// function to search and parse data, and set it to state
   async search(props) {
-    let url = `/upcoming`; //`https://imdb-api.com/en/API/ComingSoon/${key}`;
+    let url = `/upcoming`; 
 
+  // deliver new url to app.js
     const GetFilm = (id) => {
-      change(id);
-      console.log(id);
-    };
-    // if user add's item to watchlist, the button will stop showing and will show ✅ instead
-    const added = () => {
-      this.setState({ toggle: false });
-    };
-
-    const change = (id) => {
-      url = `/find?i=${id}`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}`; 
       this.props.set(url);
-      // return <Search URL={url} />;
     };
+    // using axios to get and parse fata from the url
     axios.get(url).then((res) => {
       const data = res.data;
       const imgUrls = [];
@@ -52,6 +45,7 @@ export default class ComingSoon extends React.Component {
           titles[i] = `${titles[i]}...`;
         }
         ids[i] = data.items[i].id;
+        // all images are also links to the given items search page
         images[i] = (
           <td>
             <Link to={"/Search"}>
@@ -64,9 +58,7 @@ export default class ComingSoon extends React.Component {
                 height="280"
               />
               <Route path="/Search">
-                <Search
-                  URL={`/find?i=${ids[i]}`} //`https://www.omdbapi.com/?i=${ids[i]}&apikey=${key2}`}
-                />
+                <Search URL={`/find?i=${ids[i]}`} />
               </Route>
             </Link>
             <p text-align="center">
@@ -81,6 +73,7 @@ export default class ComingSoon extends React.Component {
           </td>
         );
       }
+      // setting the posters in rows of 5
       let rows = [];
       for (let i = 0; i < images.length; i++) {
         if (i % 5 === 0) {
@@ -88,6 +81,7 @@ export default class ComingSoon extends React.Component {
         }
         rows.push(images[i]);
       }
+      //setting rows of content to state
       this.setState({
         info: [<table className="list">{rows}</table>],
       });

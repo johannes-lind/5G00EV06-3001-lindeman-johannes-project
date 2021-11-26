@@ -22,7 +22,7 @@ function App() {
   // default value set to Blade Runner so Search will never show empty page (or info for the film "Untitled")
   let [film, setFilm] = React.useState("Blade Runner");
   let [url, setUrl] = React.useState(
-    `/find?t=${film}&plot=full` //`https://www.omdbapi.com/?t=${film}&apikey=${key}`
+    `/find?t=${film}&plot=full` 
   );
 
   // sending the url to Search -component
@@ -31,7 +31,7 @@ function App() {
   };
   //changing the url based on input
   const change = () => {
-    setUrl(`/find?t=${film}&plot=full`); //`https://www.omdbapi.com/?t=${film}&apikey=${key}`);
+    setUrl(`/find?t=${film}&plot=full`); 
     GetFilm();
   };
 
@@ -62,7 +62,7 @@ function App() {
 
               <li>
                 <Link to={"/Hot100"} className="nav-link">
-                  {"    "} Hot100 (Film)
+                  {"    "} Trending (Film)
                 </Link>
               </li>
               <li>
@@ -79,7 +79,7 @@ function App() {
 
               <li>
                 <Link to={"/Hot100TV"} className="nav-link">
-                  {"    "} Hot100 (TV)
+                  {"    "} Trending (TV)
                 </Link>
               </li>
 

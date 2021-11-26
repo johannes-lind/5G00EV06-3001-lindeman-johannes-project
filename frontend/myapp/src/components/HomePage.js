@@ -30,7 +30,7 @@ export default class HomePage extends React.Component {
       this.props.set(url);
     };
 
-    // parsing the data accordingly to arrays
+    // getting data with axios and parsing the data accordingly to arrays
     try {
       axios.get(url).then((res) => {
         const data = res.data;
@@ -94,7 +94,7 @@ export default class HomePage extends React.Component {
 
     // setting and sending url to app.js, which delivers it to Search.js as props
     const GetFilm = (id) => {
-      url = `/find?i=${id}&plot=full`; // `https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+      url = `/find?i=${id}&plot=full`; 
       this.props.set(url);
     };
     try {
@@ -114,6 +114,7 @@ export default class HomePage extends React.Component {
             titles[i] = `${titles[i]}...`;
           }
           ids[i] = data.items[i].id;
+          // all images are also links to the given items search page
           images[i] = (
             <td>
               <>

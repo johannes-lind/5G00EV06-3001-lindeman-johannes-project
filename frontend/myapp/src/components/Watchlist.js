@@ -30,7 +30,7 @@ export default class Watchlist extends React.Component {
 
   // function to change the url in the App-component
   change = (id) => {
-    let url = `/find?i=${id}&plot=full`; //`https://www.omdbapi.com/?i=${id}&apikey=${key2}`;
+    let url = `/find?i=${id}&plot=full`; 
     this.props.set(url);
   };
 
@@ -78,13 +78,13 @@ export default class Watchlist extends React.Component {
               height="280"
               onClick={() => {
                 <Search
-                  URL={`/find?i=${id[i]}&plot=full`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                  URL={`/find?i=${id[i]}&plot=full`} 
                 />;
               }}
             />
             <Route path="/Search">
               <Search
-                URL={`/find?i=${id[i]}&plot=full`} //`https://www.omdbapi.com/?i=${id[i]}&apikey=${key2}`}
+                URL={`/find?i=${id[i]}&plot=full`} 
               />
             </Route>
           </Link>
