@@ -57,3 +57,6 @@ Release 2: 2021-11-29 features:
 
 -User can exit and open the app and watchlist is saved to persistant storage.
 
+-User van view the page in landscape and portait mode
+
+-All pages scale accordingly to mobile devices
