@@ -69,12 +69,3 @@ Known bugs:
 
 -Not really a bug, but when searching an item that has the same name as some other item, the app shows the one that is older
 
-Screencast:
-
-Unfortunately Youtube is refusing to handle the screencast as one video, so it is done in three parts:
-
-Part 1 (UI demonstration): https://youtu.be/EtAisQ35BbM
-
-Part 2 (Code): https://youtu.be/oIverhPPGQU
-
-Part 3 (Self evaluation): https://youtu.be/fw202RDenuo
